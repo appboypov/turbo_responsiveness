@@ -1,7 +1,6 @@
 name: turbo_responsiveness
 description: Responsive design utilities and widgets for Flutter.
 version: 1.0.0
-resolution: workspace
 homepage: https://github.com/appboypov/turbo_responsiveness
 repository: https://github.com/appboypov/turbo_responsiveness
 
