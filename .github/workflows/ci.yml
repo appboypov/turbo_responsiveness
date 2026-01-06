@@ -38,12 +38,15 @@ jobs:
       - name: Run tests
         run: flutter test
 
-      - name: Dry-run publish
+      - name: Validate 160 Pub Points
         run: |
-          OUTPUT=$(flutter pub publish --dry-run 2>&1)
-          echo "$OUTPUT"
-          if echo "$OUTPUT" | grep -q "Package has [1-9]"; then
-            echo "::error::Package has warnings. Must have 0 warnings for 140-point score."
+          # Try to use script from monorepo root, or use local copy
+          if [ -f "../../.github/scripts/check_pub_points.sh" ]; then
+            bash ../../.github/scripts/check_pub_points.sh
+          elif [ -f ".github/scripts/check_pub_points.sh" ]; then
+            bash .github/scripts/check_pub_points.sh
+          else
+            echo "::error::check_pub_points.sh script not found"
             exit 1
           fi
 
